@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Loan Calculator</title>
+</head>
+<body>
+    <header>
+        <div class="header">
+            Loan Calculator
+        </div>
+    </header>
+    <section class="details">
+        <div class="loan-form">
+            <label for="amount">Loan Amount:</label>
+            <input type="text" id="amount">
+            <label for="downpayment">Down Payment:</label>
+            <input type="text" id="downpayment">
+            <fieldset id="downpayment" class="fieldSetForRadioClass">
+                <input id="downpayement-percent" name="downpayment-type" value="percent" type="radio" class="radioClass">
+                <lable for="term-unit-months" class="radioClass">%</lable>
+                <input id="downpayment-dollar" name="downpayment-type" value="dollars" type="radio" class="radioClass" checked="checked">
+                <lable for="term-unit-years" class="radioClass">$</lable>
+            </fieldset>
+            <label for="interest-rate">Interest Rate:</label>
+            <input type="text" id="interest-rate">
+            <label for="term">Loan Term:</label>
+            <input type="text" id="term">
+                <fieldset id="term" class="fieldSetForRadioClass">
+                    <input id="term-months" name="term-units" value="months" type="radio" class="radioClass">
+                    <lable for="term-unit-months" class="radioClass">Months</lable>
+                    <input id="term-years" name="term-units" value="years" type="radio" class="radioClass" checked="checked">
+                    <lable for="term-unit-years" class="radioClass">Years</lable>
+                </fieldset>
+            <button>Compute</button>
+        </div>
+        <div class="payment-details">
+            <div class="monthly-payment">
+                <h2>Your Monthly Payments</h2>
+            <p>$335.55</p>
+            </div>
+            <div class="financial-details">
+                <p>Total Principle:</p>
+                <p>Total Interest:</p>
+                <p>Total Cost:</p>
+            </div>
+        </div>
+    </section>
+
+    <div class="table-responsive">
+        <table class="table table-striped">
+            <tbody id="results">
+                <!-- Generated Results Here -->
+            </tbody>
+        </table>
+    </div>
+    <!-- Templates for displaying output -->
+<template id="template">
+    <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+    </tr>
+</template>
+
+    
+    <script src="script.js"></script>
+</body>
+</html>
