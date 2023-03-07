@@ -16,9 +16,9 @@
     <section class="details">
         <div class="loan-form">
             <label for="amount">Loan Amount:</label>
-            <input type="text" id="amount">
+            <input type="text" id="amount" >
             <label for="downpayment">Down Payment:</label>
-            <input type="text" id="downpayment">
+            <input type="text" id="downpayment" >
             <fieldset id="downpayment" class="fieldSetForRadioClass">
                 <input id="downpayement-percent" name="downpayment-type" value="percent" type="radio" class="radioClass">
                 <lable for="term-unit-months" class="radioClass">%</lable>
@@ -26,9 +26,9 @@
                 <lable for="term-unit-years" class="radioClass">$</lable>
             </fieldset>
             <label for="interest-rate">Interest Rate:</label>
-            <input type="text" id="interest-rate">
+            <input type="text" id="interest-rate" >
             <label for="term">Loan Term:</label>
-            <input type="text" id="term">
+            <input type="text" id="term" >
                 <fieldset id="term" class="fieldSetForRadioClass">
                     <input id="term-months" name="term-units" value="months" type="radio" class="radioClass">
                     <lable for="term-unit-months" class="radioClass">Months</lable>
@@ -40,12 +40,22 @@
         <div class="payment-details">
             <div class="monthly-payment">
                 <h2>Your Monthly Payments</h2>
-            <p>$335.55</p>
+                <div id="monthly-payment-value"></div>
             </div>
-            <div class="financial-details">
-                <p>Total Principle:</p>
-                <p>Total Interest:</p>
-                <p>Total Cost:</p>
+
+            <div class="total-principle">
+                <h2>Total Principle</h2>
+                <div id="total-principle-value"></div>
+            </div>
+
+            <div class="total-interest">
+                <h2>Total Interest</h2>
+                <div id="total-interest-value"></div>
+            </div>
+
+            <div class="total-cost">
+                <h2>Total</h2>
+                <div id="total-cost-value"></div>
             </div>
         </div>
     </section>
