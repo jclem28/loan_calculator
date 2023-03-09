@@ -4,81 +4,41 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
     <title>Loan Calculator</title>
 </head>
 <body>
-    <header>
-        <div class="header">
-            Loan Calculator
-        </div>
-    </header>
-    <section class="details">
-        <div class="loan-form">
-            <label for="amount">Loan Amount:</label>
-            <input type="text" id="amount" >
-            <label for="downpayment">Down Payment:</label>
-            <input type="text" id="downpayment" >
-            <fieldset id="downpayment" class="fieldSetForRadioClass">
-                <input id="downpayement-percent" name="downpayment-type" value="percent" type="radio" class="radioClass">
-                <lable for="term-unit-months" class="radioClass">%</lable>
-                <input id="downpayment-dollar" name="downpayment-type" value="dollars" type="radio" class="radioClass" checked="checked">
-                <lable for="term-unit-years" class="radioClass">$</lable>
-            </fieldset>
-            <label for="interest-rate">Interest Rate:</label>
-            <input type="text" id="interest-rate" >
-            <label for="term">Loan Term:</label>
-            <input type="text" id="term" >
-                <fieldset id="term" class="fieldSetForRadioClass">
-                    <input id="term-months" name="term-units" value="months" type="radio" class="radioClass">
-                    <lable for="term-unit-months" class="radioClass">Months</lable>
-                    <input id="term-years" name="term-units" value="years" type="radio" class="radioClass" checked="checked">
-                    <lable for="term-unit-years" class="radioClass">Years</lable>
-                </fieldset>
-            <button>Compute</button>
-        </div>
-        <div class="payment-details">
-            <div class="monthly-payment">
-                <h2>Your Monthly Payments</h2>
-                <div id="monthly-payment-value"></div>
-            </div>
-
-            <div class="total-principle">
-                <h2>Total Principle</h2>
-                <div id="total-principle-value"></div>
-            </div>
-
-            <div class="total-interest">
-                <h2>Total Interest</h2>
-                <div id="total-interest-value"></div>
-            </div>
-
-            <div class="total-cost">
-                <h2>Total</h2>
-                <div id="total-cost-value"></div>
-            </div>
-        </div>
-    </section>
-
-    <div class="table-responsive">
-        <table class="table table-striped">
-            <tbody id="results">
-                <!-- Generated Results Here -->
-            </tbody>
-        </table>
+    <div class="container">
+        <h1>Loan Calculator</h1>
+        <form id="loan">
+            <main>
+                <div class="input-field">
+                    <label>Loan Value</label>
+                    <input type="number" id="loanValue">
+                </div>
+                <div class="input-field">
+                    <label>Down Payment</label>
+                    <input type="number" id="downPayment">
+                </div>
+                <div class="input-field">
+                    <label>Loan Amount</label>
+                    <input type="number" id="loanAmount" readonly placeholder="Loan Amount">
+                </div>
+                <div class="input-field">
+                    <label>Interest Rate</label>
+                    <input type="text" id="interestRate">
+                </div>
+                <div class="input-field">
+                    <label>Loan Term (years)</label>
+                    <input type="number" id="loanTerm">
+                </div>
+            </main>
+            <footer>
+                <button type="submit">Compute</button>
+                <div class="results">Monthly Payment: <span id="monthly-payment"></span></b></div>
+            </footer>
+        </form>
     </div>
-    <!-- Templates for displaying output -->
-<template id="template">
-    <tr>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-    </tr>
-</template>
 
-    
     <script src="script.js"></script>
 </body>
 </html>

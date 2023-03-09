@@ -1,48 +1,71 @@
-let loanAmount = document.getElementById("amount").value;
-let downPayment = document.getElementById("downpayment").value;
-let interestRate = document.getElementById("interest-rate").value;
-let loanTerm = document.getElementById("term").value;
+// Inputs / DOM Elements
 
-let monthlyPaymentValue = document.getElementById("monthly-payment-value");
-let totalPrincipleValue = document.getElementById("total-principle-value");
-let totalInterestValue = document.getElementById("total-interest-value");
-let totalCostValue = document.getElementById("total-cost-value");
+const loanValue = document.getElementById("loanValue");
+const downPayment = document.getElementById("downPayment");
+const loanAmount = document.getElementById("loanAmount");
+const interestRate = document.getElementById("interestRate");
+const loanTerm = document.getElementById("loanTerm");
 
-const compute = document.querySelector("button");
+const form = document.getElementById("loan");
 
-loanAmount = parseFloat(loanAmount);
-downPayment = parseFloat(downPayment);
-interestRate = parseFloat(interestRate);
-loanTerm = parseFloat(loanTerm);
+// console.log(loanValue, downPayment, loanAmount, interestRate, loanTerm);
 
-let interest = interestRate / 12 / 100;
-let newLoanAmount = loanAmount - downPayment;
+downPayment.addEventListener("keyup", () => {
+  loanAmount.value = loanValue.value - downPayment.value;
 
-monthlyPayment = () => {
-  let payment =
-    (newLoanAmount * interest * Math.pow(1 + interest, loanTerm)) /
-    (Math.pow(1 + interest, loanTerm) - 1);
+  let loanAmountValue = loanAmount.value;
+  return loanAmountValue;
+});
 
-  return payment;
+calculateLoan = (loanAmount, interestRate, numberMonthlyPayments) => {
+  percentageToDecimal = (percent) => {
+    return percent / 12 / 100;
+  };
+  interestRate = percentageToDecimal(interestRate);
+
+  yearsToMonths = (year) => {
+    return year * 12;
+  };
+  numberMonthlyPayments = yearsToMonths(numberMonthlyPayments);
+
+  let loan =
+    (interestRate * loanAmount) /
+    (1 - Math.pow(1 + interestRate, -numberMonthlyPayments));
+  console.log(loan);
+  return parseFloat(loan.toFixed(2));
 };
 
-updateData = (payment) => {
-  monthlyPaymentValue.innerText = Math.round(payment);
+form.onsubmit = (e) => {
+  e.preventDefault();
+  validate();
+  let loanAmount = loanValue.value - downPayment.value;
 
-  let totalPrinciple = Math.round(loanTerm * payment);
-  totalPrincipleValue.innerHTML = totalPrinciple;
+  let monthlyPayment = calculateLoan(
+    loanAmount,
+    interestRate.value,
+    loanTerm.value
+  );
 
-  let totalInterestPayable = Math.round(totalPrinciple - newLoanAmount);
-  totalInterestValue.innerHTML = totalInterestPayable;
-
-  let totalCost = Math.round(totalPrinciple + totalInterestPayable);
-  totalCostValue.innerText = totalCost;
+  document.getElementById("monthly-payment").innerHTML = `$ ${monthlyPayment}`;
 };
 
-init = () => {
-  let myPayment = monthlyPayment();
-  updateData(myPayment);
-};
+validate = () => {
+  if (
+    loanValue.value === "" ||
+    downPayment.value === "" ||
+    interestRate.value === "" ||
+    loanTerm.value === ""
+  ) {
+    // alert("complete all fields");
 
-// Event Listener for Compute Button
-compute.addEventListener("click", init);
+    let alert = document.createElement("div");
+    alert.classList.add = "btn red btn-large";
+    alert.innerHTML = `<span>Complete all fields</span>`;
+    alert.style.margin = ".5rem 35%";
+    form.parentNode.insertBefore(alert, form);
+
+    alert.onclick = () => alert.remove();
+
+    setTimeout(() => alert.remove(), "3000");
+  }
+};
